@@ -2,7 +2,7 @@ import { runLightweightAudit } from "../../src/lib/auditor";
 
 interface Env {}
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
+export const onRequestPost = async (context: { request: Request }) => {
   try {
     const body = (await context.request.json()) as { url?: string };
     const url = body?.url;
