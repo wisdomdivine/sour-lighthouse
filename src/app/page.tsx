@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import CustomInput from "@/components/ui/CustomInput";
 import DotLoader from "@/components/ui/DotLoader";
 import Logo from "@/components/ui/Logo";
+import SitelinksNav from "@/components/ui/SitelinksNav";
 import AuditResults from "@/components/audit/AuditResults";
 import { AuditResult } from "@/lib/auditor";
 import { IconArrowRight } from "@tabler/icons-react";
@@ -21,6 +22,17 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<AuditResult | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const queryUrl = params.get("url");
+      if (queryUrl) {
+        setUrl(queryUrl);
+        handleSubmit(queryUrl);
+      }
+    }
+  }, []);
 
   const handleSubmit = async (targetUrl?: string) => {
     const urlToTest = (targetUrl || url).trim();
@@ -65,7 +77,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full bg-white text-neutral-900 dark:bg-[#0c0c0c] dark:text-neutral-100 transition-colors flex flex-col justify-between">
-      {/* Top Navigation */}
+      {/* Top Navigation with Sitelinks */}
       <header className="w-full max-w-6xl mx-auto px-6 py-8 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Logo size={28} />
@@ -78,7 +90,10 @@ export default function Home() {
             </span>
           </div>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-8">
+          <SitelinksNav className="hidden md:flex" />
+          <ThemeToggle />
+        </div>
       </header>
 
       {/* Main Content Area */}
@@ -169,14 +184,65 @@ export default function Home() {
                 ))}
               </div>
             </div>
+
+            {/* Sitelink focus areas for search indexing and navigation */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-12">
+              <div id="speed" className="flex flex-col gap-2 p-6 rounded-2xl bg-neutral-100/40 dark:bg-neutral-900/30 scroll-mt-8">
+                <span className="text-xs font-light uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
+                  Speed
+                </span>
+                <span className="text-sm font-normal text-neutral-800 dark:text-neutral-200">
+                  Server latency and page weight
+                </span>
+                <p className="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                  Measures roundtrip time compression and layout stability
+                </p>
+              </div>
+
+              <div id="search" className="flex flex-col gap-2 p-6 rounded-2xl bg-neutral-100/40 dark:bg-neutral-900/30 scroll-mt-8">
+                <span className="text-xs font-light uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
+                  Search
+                </span>
+                <span className="text-sm font-normal text-neutral-800 dark:text-neutral-200">
+                  Visibility and discoverability
+                </span>
+                <p className="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                  Verifies page titles descriptions and social previews
+                </p>
+              </div>
+
+              <div id="access" className="flex flex-col gap-2 p-6 rounded-2xl bg-neutral-100/40 dark:bg-neutral-900/30 scroll-mt-8">
+                <span className="text-xs font-light uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
+                  Access
+                </span>
+                <span className="text-sm font-normal text-neutral-800 dark:text-neutral-200">
+                  Readability for everyone
+                </span>
+                <p className="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                  Checks image descriptions language and link clarity
+                </p>
+              </div>
+
+              <div id="structure" className="flex flex-col gap-2 p-6 rounded-2xl bg-neutral-100/40 dark:bg-neutral-900/30 scroll-mt-8">
+                <span className="text-xs font-light uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
+                  Structure
+                </span>
+                <span className="text-sm font-normal text-neutral-800 dark:text-neutral-200">
+                  Safety and modern standards
+                </span>
+                <p className="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                  Validates encryption doctype and security rules
+                </p>
+              </div>
+            </div>
           </div>
         )}
       </main>
 
-      {/* Minimal Footer */}
-      <footer className="w-full max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-light text-neutral-400 dark:text-neutral-600">
+      {/* Minimal Footer with Sitelinks */}
+      <footer className="w-full max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-light text-neutral-400 dark:text-neutral-600">
+        <SitelinksNav />
         <span>Open use for everyone</span>
-        <span>Built with fast lightweight checks</span>
       </footer>
     </div>
   );
