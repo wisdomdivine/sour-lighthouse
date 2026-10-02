@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import { AuditItem as AuditItemType } from "@/lib/auditor";
+import gsap from "gsap";
 
 interface AuditItemProps {
   item: AuditItemType;
@@ -10,6 +11,22 @@ interface AuditItemProps {
 
 export default function AuditItem({ item }: AuditItemProps) {
   const [expanded, setExpanded] = useState(false);
+  const detailsRef = useRef<HTMLDivElement>(null);
+
+  const toggleExpand = () => {
+    const next = !expanded;
+    setExpanded(next);
+
+    if (detailsRef.current) {
+      if (next) {
+        gsap.fromTo(
+          detailsRef.current,
+          { opacity: 0, y: -6, height: 0 },
+          { opacity: 1, y: 0, height: "auto", duration: 0.35, ease: "power2.out" }
+        );
+      }
+    }
+  };
 
   const verdictLabel =
     item.verdict === "good"
@@ -26,14 +43,14 @@ export default function AuditItem({ item }: AuditItemProps) {
       : "text-rose-600 dark:text-rose-400";
 
   return (
-    <div className="flex flex-col p-6 rounded-2xl bg-neutral-100/50 dark:bg-neutral-900/40 transition-colors">
+    <div className="audit-item flex flex-col p-5 sm:p-6 rounded-2xl bg-neutral-100/50 dark:bg-neutral-900/40 transition-colors">
       <button
         type="button"
-        onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center justify-between text-left cursor-pointer focus:outline-none"
+        onClick={toggleExpand}
+        className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left cursor-pointer focus:outline-none"
       >
-        <div className="flex flex-col gap-1 pr-4">
-          <span className="text-base font-normal text-neutral-900 dark:text-neutral-100">
+        <div className="flex flex-col gap-1 pr-2">
+          <span className="text-sm sm:text-base font-normal text-neutral-900 dark:text-neutral-100 leading-snug">
             {item.title}
           </span>
           <span className={`text-xs font-light ${verdictTextColor}`}>
@@ -41,7 +58,7 @@ export default function AuditItem({ item }: AuditItemProps) {
           </span>
         </div>
 
-        <div className="flex items-center gap-4 text-neutral-400 dark:text-neutral-500">
+        <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 text-neutral-400 dark:text-neutral-500 self-stretch sm:self-auto pt-1 sm:pt-0">
           {item.metricValue && (
             <span className="text-xs font-light text-neutral-600 dark:text-neutral-300">
               {item.metricValue}
@@ -56,12 +73,15 @@ export default function AuditItem({ item }: AuditItemProps) {
       </button>
 
       <div className="mt-3">
-        <p className="text-sm font-light text-neutral-600 dark:text-neutral-300 leading-relaxed">
+        <p className="text-xs sm:text-sm font-light text-neutral-600 dark:text-neutral-300 leading-relaxed">
           {item.summary}
         </p>
 
         {expanded && item.recommendation && (
-          <div className="mt-4 p-4 rounded-xl bg-neutral-200/50 dark:bg-neutral-800/50">
+          <div
+            ref={detailsRef}
+            className="mt-4 p-4 rounded-xl bg-neutral-200/50 dark:bg-neutral-800/50 overflow-hidden"
+          >
             <span className="block text-xs font-light uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-1">
               How to improve
             </span>
