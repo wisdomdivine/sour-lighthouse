@@ -11,6 +11,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Sour Lighthouse",
   description: "Lightweight website auditor",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/logo-light.svg", media: "(prefers-color-scheme: light)" },
+      { url: "/logo-dark.svg", media: "(prefers-color-scheme: dark)" },
+    ],
+    apple: "/logo-dark.png",
+  },
 };
 
 export default function RootLayout({

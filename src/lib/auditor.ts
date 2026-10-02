@@ -513,7 +513,9 @@ export async function runLightweightAudit(targetUrl: string): Promise<AuditResul
   }
 
   // Security headers
-  const securityHeaderCount = [hsts, csp, xFrame].filter(Boolean).length;
+  const metaCsp = $("meta[http-equiv='content-security-policy' i]").length > 0;
+  const hasCsp = csp || metaCsp;
+  const securityHeaderCount = [hsts, hasCsp, xFrame].filter(Boolean).length;
   if (securityHeaderCount >= 2) {
     structureItems.push({
       id: "security-headers",

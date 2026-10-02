@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sour Lighthouse
 
-## Getting Started
+A lightweight, instant website auditor designed to give you clear answers without the complexity.
 
-First, run the development server:
+Traditional auditing tools take upwards of thirty seconds to run, overload you with technical acronyms, and require heavy computing resources just to answer basic questions about your website. Sour Lighthouse was built to change that. It delivers instant, readable evaluations of your website health in everyday language.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## What It Does
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Sour Lighthouse examines any public web address across four vital areas of website health:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Speed
+Evaluates how quickly your web server responds, the initial weight of your page, content compression, layout stability, and caching rules.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Search visibility
+Checks if search engines have what they need to find and showcase your pages, including clear titles, accurate descriptions, mobile screen adaptation, and social sharing previews.
 
-## Learn More
+3. Ease of access
+Ensures your content is readable and navigable for everyone, checking image descriptions for screen readers, document language declarations, input labels, and clickable link clarity.
 
-To learn more about Next.js, take a look at the following resources:
+4. Safety and structure
+Verifies secure encrypted connections, modern webpage standards, safe external link targets, and protective browser security rules.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Why It Is Different
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Instant results
+Audits finish in under two seconds. Instead of waiting for a slow headless browser to simulate a mobile device, Sour Lighthouse directly inspects your live web response to evaluate performance fundamentals on the spot.
 
-## Deploy on Vercel
+Plain English explanations
+No confusing jargon or cryptic scores. You receive clear statements of what is working well, what needs attention, and direct suggestions on how to improve.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open and frictionless
+No accounts, no logins, and no subscriptions. Open access for developers, designers, site owners, and curious visitors.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Minimalist experience
+A distraction-free interface with gentle contrast, thoughtful whitespace, and support for both light and dark display modes.

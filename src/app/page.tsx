@@ -4,6 +4,7 @@ import { useState } from "react";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import CustomInput from "@/components/ui/CustomInput";
 import DotLoader from "@/components/ui/DotLoader";
+import Logo from "@/components/ui/Logo";
 import AuditResults from "@/components/audit/AuditResults";
 import { AuditResult } from "@/lib/auditor";
 import { IconArrowRight } from "@tabler/icons-react";
@@ -66,13 +67,16 @@ export default function Home() {
     <div className="min-h-screen w-full bg-white text-neutral-900 dark:bg-[#0c0c0c] dark:text-neutral-100 transition-colors flex flex-col justify-between">
       {/* Top Navigation */}
       <header className="w-full max-w-6xl mx-auto px-6 py-8 flex items-center justify-between">
-        <div className="flex flex-col">
-          <span className="text-lg font-light tracking-wide text-neutral-900 dark:text-neutral-100">
-            Lighthouse
-          </span>
-          <span className="text-xs font-light text-neutral-400 dark:text-neutral-500">
-            Lightweight website auditor
-          </span>
+        <div className="flex items-center gap-3">
+          <Logo size={28} />
+          <div className="flex flex-col">
+            <span className="text-lg font-light tracking-wide text-neutral-900 dark:text-neutral-100">
+              Lighthouse
+            </span>
+            <span className="text-xs font-light text-neutral-400 dark:text-neutral-500">
+              Lightweight website auditor
+            </span>
+          </div>
         </div>
         <ThemeToggle />
       </header>
