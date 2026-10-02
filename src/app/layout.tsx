@@ -26,18 +26,18 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo-light.png",
-        width: 512,
-        height: 512,
-        alt: "Sour Lighthouse mark",
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Sour Lighthouse website auditor",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Sour Lighthouse",
     description: "Instant website health checks in plain words",
-    images: ["/logo-light.png"],
+    images: ["/og.png"],
   },
   icons: {
     icon: [
