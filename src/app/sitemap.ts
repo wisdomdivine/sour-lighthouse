@@ -1,7 +1,9 @@
 import { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://sour-lighthouse.web.app";
+  const baseUrl = "https://sour-lighthouse.pages.dev";
   const now = new Date();
 
   return [
