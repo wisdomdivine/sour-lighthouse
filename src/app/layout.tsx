@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sour-lighthouse.web.app"),
+  metadataBase: new URL("https://sour-lighthouse.pages.dev"),
   title: {
     default: "Sour Lighthouse",
     template: "%s | Sour Lighthouse",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sour Lighthouse",
     description: "Instant website health checks in plain words",
-    url: "https://sour-lighthouse.web.app",
+    url: "https://sour-lighthouse.pages.dev",
     siteName: "Sour Lighthouse",
     type: "website",
     images: [
@@ -41,11 +41,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: "/logo-light.svg" },
       { url: "/favicon.ico" },
-      { url: "/logo-light.svg", media: "(prefers-color-scheme: light)" },
-      { url: "/logo-dark.svg", media: "(prefers-color-scheme: dark)" },
     ],
-    apple: "/logo-dark.png",
+    apple: "/logo-light.png",
   },
 };
 
@@ -54,47 +53,47 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://sour-lighthouse.web.app/#website",
-      "url": "https://sour-lighthouse.web.app",
+      "@id": "https://sour-lighthouse.pages.dev/#website",
+      "url": "https://sour-lighthouse.pages.dev",
       "name": "Sour Lighthouse",
       "description": "A lightweight website auditor delivering instant evaluations in everyday language",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://sour-lighthouse.web.app/?url={search_term_string}",
+          "urlTemplate": "https://sour-lighthouse.pages.dev/?url={search_term_string}",
         },
         "query-input": "required name=search_term_string",
       },
     },
     {
       "@type": "SiteNavigationElement",
-      "@id": "https://sour-lighthouse.web.app/#navigation",
+      "@id": "https://sour-lighthouse.pages.dev/#navigation",
       "name": "Sitelinks",
       "hasPart": [
         {
           "@type": "WebPage",
           "name": "Speed checks",
           "description": "Server latency and initial download performance",
-          "url": "https://sour-lighthouse.web.app/#speed",
+          "url": "https://sour-lighthouse.pages.dev/#speed",
         },
         {
           "@type": "WebPage",
           "name": "Search visibility",
           "description": "Titles descriptions and search discoverability",
-          "url": "https://sour-lighthouse.web.app/#search",
+          "url": "https://sour-lighthouse.pages.dev/#search",
         },
         {
           "@type": "WebPage",
           "name": "Ease of access",
           "description": "Content readability and accessibility standards",
-          "url": "https://sour-lighthouse.web.app/#access",
+          "url": "https://sour-lighthouse.pages.dev/#access",
         },
         {
           "@type": "WebPage",
           "name": "Safety and structure",
           "description": "Connection security and browser protection rules",
-          "url": "https://sour-lighthouse.web.app/#structure",
+          "url": "https://sour-lighthouse.pages.dev/#structure",
         },
       ],
     },
