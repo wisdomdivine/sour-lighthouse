@@ -185,56 +185,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Sitelink focus areas for search indexing and navigation */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-12">
-              <div id="speed" className="flex flex-col gap-2 p-6 rounded-2xl bg-neutral-100/40 dark:bg-neutral-900/30 scroll-mt-8">
-                <span className="text-xs font-light uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
-                  Speed
-                </span>
-                <span className="text-sm font-normal text-neutral-800 dark:text-neutral-200">
-                  Server latency and page weight
-                </span>
-                <p className="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed">
-                  Measures roundtrip time compression and layout stability
-                </p>
-              </div>
-
-              <div id="search" className="flex flex-col gap-2 p-6 rounded-2xl bg-neutral-100/40 dark:bg-neutral-900/30 scroll-mt-8">
-                <span className="text-xs font-light uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
-                  Search
-                </span>
-                <span className="text-sm font-normal text-neutral-800 dark:text-neutral-200">
-                  Visibility and discoverability
-                </span>
-                <p className="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed">
-                  Verifies page titles descriptions and social previews
-                </p>
-              </div>
-
-              <div id="access" className="flex flex-col gap-2 p-6 rounded-2xl bg-neutral-100/40 dark:bg-neutral-900/30 scroll-mt-8">
-                <span className="text-xs font-light uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
-                  Access
-                </span>
-                <span className="text-sm font-normal text-neutral-800 dark:text-neutral-200">
-                  Readability for everyone
-                </span>
-                <p className="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed">
-                  Checks image descriptions language and link clarity
-                </p>
-              </div>
-
-              <div id="structure" className="flex flex-col gap-2 p-6 rounded-2xl bg-neutral-100/40 dark:bg-neutral-900/30 scroll-mt-8">
-                <span className="text-xs font-light uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
-                  Structure
-                </span>
-                <span className="text-sm font-normal text-neutral-800 dark:text-neutral-200">
-                  Safety and modern standards
-                </span>
-                <p className="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed">
-                  Validates encryption doctype and security rules
-                </p>
-              </div>
-            </div>
           </div>
         )}
       </main>
