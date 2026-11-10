@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
 """
-Generate minimalist logo assets:
+Generate minimalist logo assets and white-background favicon:
 - public/logo.svg (currentColor adaptive)
 - public/logo-light.svg (dark mark for light backgrounds)
 - public/logo-dark.svg (light mark for dark backgrounds)
 - public/logo-light.png (512x512 transparent)
 - public/logo-dark.png (512x512 transparent)
-- public/favicon.ico (16, 32, 48, 64)
+- public/favicon.ico (16, 32, 48, 64) with white background & black icon
 - src/app/favicon.ico (Next.js app icon)
 """
 
 import os
 from PIL import Image, ImageDraw
 
-# Create SVGs
 SVG_CONTENT_ADAPTIVE = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor">
   <!-- Minimalist Lighthouse Beacon -->
   <!-- Light source -->
@@ -29,6 +28,18 @@ SVG_CONTENT_ADAPTIVE = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6
 SVG_CONTENT_LIGHT = SVG_CONTENT_ADAPTIVE.replace('stroke="currentColor"', 'stroke="#0a0a0a"').replace('fill="currentColor"', 'fill="#0a0a0a"')
 SVG_CONTENT_DARK = SVG_CONTENT_ADAPTIVE.replace('stroke="currentColor"', 'stroke="#f5f5f5"').replace('fill="currentColor"', 'fill="#f5f5f5"')
 
+# White background favicon SVG
+SVG_FAVICON_WHITE_BG = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Clean white background -->
+  <rect width="64" height="64" rx="14" fill="#ffffff" />
+  <!-- Black lighthouse mark -->
+  <circle cx="32" cy="16" r="3.5" fill="#0a0a0a" />
+  <path d="M38 15 L54 10 M39 18 L56 20 M38 21 L52 29" stroke="#0a0a0a" stroke-width="1.75" stroke-linecap="round" />
+  <path d="M26 24 L38 24 M28 24 L25 50 M36 24 L39 50 M22 50 L42 50" stroke="#0a0a0a" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M30 35 L34 35" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" />
+</svg>
+'''
+
 os.makedirs("public", exist_ok=True)
 os.makedirs("src/app", exist_ok=True)
 
@@ -41,8 +52,14 @@ with open("public/logo-light.svg", "w") as f:
 with open("public/logo-dark.svg", "w") as f:
     f.write(SVG_CONTENT_DARK)
 
-def draw_logo_image(size, color):
-    img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+with open("public/favicon.svg", "w") as f:
+    f.write(SVG_FAVICON_WHITE_BG)
+
+def draw_logo_image(size, color, bg_color=None):
+    if bg_color:
+        img = Image.new("RGBA", (size, size), bg_color)
+    else:
+        img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
     scale = size / 64.0
     sw = max(1, int(round(1.75 * scale)))
@@ -65,9 +82,9 @@ def draw_logo_image(size, color):
     
     return img
 
-# Generate PNGs (512x512)
 light_color = (10, 10, 10, 255)
 dark_color = (245, 245, 245, 255)
+white_bg = (255, 255, 255, 255)
 
 png_light = draw_logo_image(512, light_color)
 png_light.save("public/logo-light.png", "PNG")
@@ -75,9 +92,9 @@ png_light.save("public/logo-light.png", "PNG")
 png_dark = draw_logo_image(512, dark_color)
 png_dark.save("public/logo-dark.png", "PNG")
 
-# Generate multi-size favicon.ico
+# Generate multi-size favicon.ico with white background and black icon
 ico_sizes = [16, 32, 48, 64]
-ico_images = [draw_logo_image(s, light_color) for s in ico_sizes]
+ico_images = [draw_logo_image(s, light_color, bg_color=white_bg) for s in ico_sizes]
 ico_images[0].save(
     "public/favicon.ico",
     format="ICO",
@@ -91,4 +108,4 @@ ico_images[0].save(
     append_images=ico_images[1:]
 )
 
-print("Generated all logo assets successfully.")
+print("Generated all logo and white-bg favicon assets successfully.")
